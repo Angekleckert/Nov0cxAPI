@@ -1,0 +1,5 @@
+name: Nov0cxAPI
+version: "b1"
+main: de.nov0cx.nov0cxapi.Nov0cxAPI
+api-version: "1.14"
+authors: [ Nov0cx ]
