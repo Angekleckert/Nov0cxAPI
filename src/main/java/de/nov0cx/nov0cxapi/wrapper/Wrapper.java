@@ -10,17 +10,17 @@ import java.lang.reflect.Field;
 @Getter
 public class Wrapper {
     private final Field[] fields;
-    private final Object packet;
+    private final Object rawPacket;
     private final String name;
 
     public Wrapper(@NotNull Object packet) {
-        this.packet = packet;
+        this.rawPacket = packet;
         fields = packet.getClass().getDeclaredFields();
         WrappedPacket wrappedPacket = this.getClass().getAnnotation(WrappedPacket.class);
         name = wrappedPacket.name();
     }
 
-    public Field getField(Class<?> type, int index) throws FieldNotFoundException {
+    public Object getField(Class<?> type, int index) throws FieldNotFoundException {
         int i = 0;
         for(Field field : fields) {
             if(field.getType().equals(type)) {
@@ -30,5 +30,50 @@ public class Wrapper {
             }
         }
         throw new FieldNotFoundException("The field couldn't be found: " + type + " with the index: " + index + ".");
+    }
+
+    public int getInt(int index){
+        try {
+            return (int) getField(int.class, index);
+        } catch (FieldNotFoundException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public float getFloat(int index) {
+        try {
+            return (float) getField(float.class, index);
+        } catch (FieldNotFoundException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public double getDouble(int index) {
+        try {
+            return (double) getField(double.class, index);
+        } catch (FieldNotFoundException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public boolean getBoolean(int index) {
+        try {
+            return (boolean) getField(boolean.class, index);
+        } catch (FieldNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public long getLong(int index) {
+        try {
+            return (long) getField(long.class, index);
+        } catch (FieldNotFoundException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 }

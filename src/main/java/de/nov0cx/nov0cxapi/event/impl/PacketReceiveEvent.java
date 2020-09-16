@@ -1,22 +1,19 @@
 package de.nov0cx.nov0cxapi.event.impl;
 
-import de.nov0cx.nov0cxapi.annotation.Handle;
 import de.nov0cx.nov0cxapi.event.Nov0cxEvent;
-import de.nov0cx.nov0cxapi.event.Synchronization;
-import de.nov0cx.nov0cxapi.wrapper.Wrapper;
 import lombok.Getter;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
 @Getter
 public class PacketReceiveEvent extends Nov0cxEvent {
 
-    private final Wrapper wrapper;
+    private final String id;
     private final Player player;
+    private final Object nms;
 
-    public PacketReceiveEvent(@NotNull Handle handle, Wrapper wrapper, Player player) {
-        this.wrapper = wrapper;
+    public PacketReceiveEvent(Player player, Object packet, String id) {
         this.player = player;
-        setAsync((handle.synchronization() == Synchronization.ASYNC));
+        nms = packet;
+        this.id = id;
     }
 }
