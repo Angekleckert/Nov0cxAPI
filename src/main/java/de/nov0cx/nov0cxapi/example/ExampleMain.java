@@ -7,7 +7,6 @@ public class ExampleMain extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
     }
 
     @Override

@@ -20,13 +20,13 @@ public class PlayerData {
         cdh = new ChannelDuplexHandler() {
             @Override
             public void channelRead(ChannelHandlerContext channelHandlerContext, Object packet) throws Exception {
-                Nov0cxAPI.getAPI().getPacketProcessor().process(packet, Direction.RECEIVE);
+                Nov0cxAPI.getAPI().getPacketProcessor().process(packet, Direction.RECEIVE, player);
                 super.channelRead(channelHandlerContext, packet);
             }
 
             @Override
             public void write(ChannelHandlerContext channelHandlerContext, Object packet, ChannelPromise channelPromise) throws Exception {
-                Nov0cxAPI.getAPI().getPacketProcessor().process(packet, Direction.SEND);
+                Nov0cxAPI.getAPI().getPacketProcessor().process(packet, Direction.SEND, player);
                 super.write(channelHandlerContext, packet, channelPromise);
             }
         };
