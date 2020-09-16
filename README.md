@@ -2,6 +2,7 @@
  
  To make a listener you have to do that:
  
+ ```java
   public class ExampleListener implements Nov0cxListener {
   
      @Handle(/*You can change it to sync*/)
@@ -11,10 +12,11 @@
          }
      }
  }
- 
+ ```
  
  You register the class like that:
  
+ ```java
   package de.nov0cx.nov0cxapi.example;
 
 import de.nov0cx.nov0cxapi.Nov0cxAPI;
@@ -31,13 +33,16 @@ public class ExampleMain extends JavaPlugin {
         Nov0cxAPI.getAPI().getEventManager().registerListener(new ExampleListener());
     }
 }
+```
  
  If you want to start and stop your plugin with ur plugin you have to do this:
  
+ ```java
  package de.nov0cx.nov0cxapi.example;
 
 import de.nov0cx.nov0cxapi.Nov0cxAPI;
 import org.bukkit.plugin.java.JavaPlugin;
+
 
 public class ExampleMain extends JavaPlugin {
 
@@ -51,5 +56,6 @@ public class ExampleMain extends JavaPlugin {
         Nov0cxAPI.getAPI().onEnable();
     }
 }
+```
  
  If you want to use some code you can do it. You have to give credits.
